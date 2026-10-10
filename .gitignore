@@ -1,0 +1,6 @@
+# Salida del compilador: Eclipse la regenera a partir de src/.
+/bin/
+*.class
+
+# Javadoc generado; se conserva la documentación en el código fuente.
+/doc/

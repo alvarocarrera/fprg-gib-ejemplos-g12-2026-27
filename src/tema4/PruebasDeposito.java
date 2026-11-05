@@ -8,6 +8,7 @@ public class PruebasDeposito {
 		
 //		Deposito d = new Deposito();
 		
+		// new reserva un objeto y ejecuta el constructor con capacidad inicial 0.
 		Deposito d = new Deposito(0);
 		d.setCapacidad(1000);
 		d.llena(10);

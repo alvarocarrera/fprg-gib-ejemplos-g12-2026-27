@@ -9,6 +9,8 @@ public class HolaMundoClasico {
 		System.out.println(x);
 	}
 
+	// Los parámetros reciben copias de los valores 4 y 6 de la llamada.
+	// return entrega el resultado al código que invocó el método.
 	static double areaTriangulo(double base, double altura) {
 		return (base * altura) / 2.0;
 	}

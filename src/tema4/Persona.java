@@ -2,6 +2,7 @@ package tema4;
 
 public class Persona {
 
+	// static comparte la constante entre todas las personas; final impide reasignarla.
 	public static final int EDAD_MAXIMA = 200;
 	
 	private String nombre;
@@ -37,6 +38,7 @@ public class Persona {
 		return this.edad;
 	}
 
+	// Los setters validan antes de cambiar el estado del objeto.
 	public void setNombre(String nombre) throws Exception {
 		if (nombre == null || nombre.length() == 0) {
 			throw new Exception("No te voy a dejar que borres el nombre...");
@@ -77,6 +79,7 @@ public class Persona {
 		this.edad = edad;
 	}
 
+	// Java utiliza esta representación al imprimir la persona.
 	public String toString() {
 		String msg = "Persona[" 
 	+ "nombre = " + this.nombre 
@@ -85,7 +88,8 @@ public class Persona {
 		return msg;
 	}
 
-	// No comprueba valores null antes de comparar los atributos.
+	// Sobrecarga equals con un parámetro Persona, pero no sobrescribe equals(Object).
+	// Comprueba p, pero no los atributos null antes de llamar a equals sobre ellos.
 	public boolean equals(Persona p) {
 		return (p != null 
 				&& this.nombre.equals(p.nombre) 

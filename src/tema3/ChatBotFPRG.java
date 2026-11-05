@@ -9,9 +9,11 @@ public class ChatBotFPRG {
 		// El array tiene cinco posiciones; contador indica cuántas están ocupadas.
 		String[] historial = new String[5];
 		int contador = 0;
+		// El bucle es indefinido: sale mediante break al cumplirse alguna condición.
 		while (true) {
 			// Se lee antes de comprobar el límite: con el historial lleno se pide otro mensaje.
 			String msg = IO.readln("> ");
+			// equalsIgnoreCase compara el contenido sin distinguir mayúsculas.
 			if (msg.equalsIgnoreCase("FIN") || contador == historial.length) {
 				break;
 			} else {

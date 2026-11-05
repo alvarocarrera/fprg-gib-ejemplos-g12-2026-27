@@ -6,6 +6,7 @@ public class Deposito {
 	private int capacidad;
 	private int numLitros;
 	
+	// El constructor prepara el estado de cada nuevo depósito.
 	public Deposito(int capacidad) {
 		// numLitros empieza en cero, el valor inicial de un atributo int.
 		this.capacidad = capacidad;
@@ -15,6 +16,7 @@ public class Deposito {
 		return this.capacidad;
 	}
 	
+	// this.capacidad es el atributo; capacidad es el parámetro recibido.
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}

@@ -5,6 +5,7 @@ public class PruebasPersona {
 	public static void main(String[] args) {
 		IO.println("Comenzamos a crear personas:");
 
+		// La construcción y los setters pueden lanzar excepciones de validación.
 		try {
 
 			// Nombres y edades ficticios para probar constructores y setters.
@@ -33,6 +34,7 @@ public class PruebasPersona {
 //	p2.edad = 5067;
 
 		} catch (Exception e) {
+			// Mostramos el mensaje y la traza para localizar la causa.
 			System.err.println("ERROR: " + e.getMessage());
 			e.printStackTrace();
 		}

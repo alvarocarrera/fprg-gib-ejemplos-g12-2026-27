@@ -16,6 +16,7 @@ void main() throws Exception {
 	double base = Double.parseDouble(baseString);
 	double altura = Double.parseDouble(alturaString);
 
+	// try captura las excepciones lanzadas por las instrucciones de su bloque.
 	try {
 		double resultado = areaTriangulo(base, altura);
 		IO.println("El área es: " + resultado);
@@ -24,6 +25,7 @@ void main() throws Exception {
 //		e.printStackTrace();
 //		throw e;
 	}
+	// Comprobación sencilla de un resultado conocido: (1 * 2) / 2 = 1.
 	double a = areaTriangulo(1.0, 2.0);
 	boolean resultado = (a == 1.0);
 	System.out.println("¿correcto? -> " + resultado);
@@ -59,6 +61,7 @@ void main() throws Exception {
  * @throws Exception si la base o la altura son menores o iguales que cero
  */
 double areaTriangulo(double base, double altura) throws Exception {
+	// throw interrumpe el método y entrega la excepción a quien lo llamó.
 	if (base <= 0.0) {
 		Exception e = new Exception("No puedo calcular el área de un triángulo con medida negativa en el parámetro \"base\".");
 		

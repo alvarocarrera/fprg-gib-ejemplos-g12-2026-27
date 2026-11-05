@@ -16,6 +16,7 @@ public class EjemplosBucles {
 			IO.println("FOR -> Iteración nº: " + i);
 		}
 
+		// --contador decrementa antes de usar el valor en la expresión.
 		while (contador > 0) {
 			IO.println("Decremento -> Iteración nº: " + --contador);
 		}
@@ -28,6 +29,7 @@ public class EjemplosBucles {
 		IO.println("y = " + y);
 		IO.println("z = " + z);
 
+		// Se actualizan dos variables; && exige que ambas condiciones sean ciertas.
 		for (int i = 0, j = 10; i < 100 && j > -50; i = i + 7, j--) {
 			IO.println("i = " + i);
 			IO.println("j = " + j);

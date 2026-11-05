@@ -8,6 +8,7 @@ Proyecto Java de Eclipse `EjemplosClaseG12`, con ejemplos introductorios usados 
 - `src/HolaMundoModerno.java`: archivo fuente compacto, entrada de datos, cálculo del área de un triángulo y excepciones.
 - `src/tema3/`: bucles, incrementos y decrementos, arrays y un chatbot sencillo que guarda mensajes (sin inteligencia artificial ni servicios externos).
 - `src/tema4/`: clases `Persona` y `Deposito`, constructores, atributos privados, métodos y programas de prueba.
+- `src/tema5/`: tipos de datos, arrays unidimensionales y bidimensionales, y registro de alturas con arrays paralelos.
 - `.project`, `.classpath` y `.settings/`: configuración necesaria para importar y compilar el proyecto en Eclipse.
 
 Son ejemplos en evolución, no una biblioteca de producción. Algunos fragmentos están comentados para conservar alternativas vistas en clase. Los nombres y edades de prueba son ficticios; el correo usa el dominio reservado `example.com`.
@@ -36,6 +37,8 @@ Si el workspace ya contiene un proyecto llamado `EjemplosClaseG12`, importa la d
 
 Abre un archivo con un método `main` y selecciona **Run As > Java Application**. Los programas ejecutables son `HolaMundoClasico`, `HolaMundoModerno`, `tema3.ChatBotFPRG`, `tema3.EjemplosBucles`, `tema4.PruebasDeposito` y `tema4.PruebasPersona`. `Persona` y `Deposito` se utilizan desde los programas de prueba, no tienen entrada propia.
 
+En el tema 5 también se pueden ejecutar `EjemplosTiposDatos`, `EjemplosArrays`, `EjemplosArrays2D`, `MasEjemplosArrays` y `PruebasRegistroAltura`. `EjemplosArrays` muestra 20.000 nombres y alturas; se puede reducir `cantidad` para obtener menos salida. `EjemplosArrays2D` muestra referencias a filas y recorridos de una matriz. La prueba del registro incluye a propósito un acceso fuera de rango para mostrar el tratamiento de excepciones; `RegistroAltura` es la clase utilizada por la prueba.
+
 La entrada y la salida aparecen en la consola de Eclipse. En el ejemplo del triángulo escribe números y usa un punto como separador decimal (por ejemplo, `5.7`). En el chatbot escribe `FIN` para terminar; se guardan como máximo cinco mensajes. Tal como está escrito, después del quinto mensaje se pide una entrada más antes de terminar.
 
 ## Alcance de los ejemplos
@@ -43,6 +46,7 @@ La entrada y la salida aparecen en la consola de Eclipse. En el ejemplo del tri�
 - Las conversiones de texto a número en `HolaMundoModerno` están fuera del `try`: una entrada no numérica puede terminar el programa con una excepción.
 - `Persona` contiene una validación de correo simplificada. Su método `equals(Persona)` no sobrescribe `equals(Object)` y no contempla todos los casos con `null`.
 - `Deposito.llena` usa `<`, no `<=`: no permite alcanzar exactamente la capacidad. No valida todas las cantidades ni los cambios de capacidad.
+- En `RegistroAltura`, `getPosMinimo`, `alturaMedia`, `getUltimaPosAltura` y `contarAlturasEntre` quedan como ejercicios y devuelven valores provisionales; antes de generar datos, las alturas contienen el valor inicial `0`.
 
 Estos comportamientos se conservan para no alterar los ejemplos de clase.
 

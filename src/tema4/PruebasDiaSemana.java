@@ -1,7 +1,16 @@
 package tema4;
 
+/**
+ * Programa de prueba del enum {@link DiaSemana}: comparación con {@code ==} y
+ * con {@link DiaSemana#esPosterior(DiaSemana, DiaSemana)}.
+ */
 public class PruebasDiaSemana {
 
+	/**
+	 * Compara dos días y muestra si son iguales y cuál es posterior.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 
 		DiaSemana today = DiaSemana.MIÉRCOLES;

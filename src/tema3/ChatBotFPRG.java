@@ -1,7 +1,21 @@
 package tema3;
 
+/**
+ * Chatbot sencillo que guarda hasta cinco mensajes escritos por el usuario.
+ *
+ * <p>Practica un bucle {@code while (true)} con {@code break}, un array de
+ * {@code String} con un contador de posiciones ocupadas y el recorrido posterior
+ * del array ignorando las posiciones vacías ({@code null}). El usuario escribe
+ * {@code FIN} (en mayúsculas o minúsculas) para terminar.
+ */
 public class ChatBotFPRG {
 	
+	/**
+	 * Lee mensajes hasta que se escribe {@code FIN} o el historial se llena, y
+	 * después muestra los mensajes guardados con su posición.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 
 		IO.println("Comienza el chatbot: ");

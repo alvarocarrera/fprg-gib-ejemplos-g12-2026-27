@@ -141,7 +141,11 @@ public class EmailHelper {
 
 	/**
 	 * Ejemplo de uso. Requiere las variables de entorno {@code GOOGLE_ACCESS_TOKEN}
-	 * y {@code EMAIL_DESTINO}.
+	 * y {@code EMAIL_DESTINO}; envía dos correos de prueba, uno con todos los
+	 * parámetros y otro con la versión corta.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 * @throws Exception si falla el envío
 	 */
 	public static void main(String[] args) throws Exception {
 		String destino = System.getenv("EMAIL_DESTINO");

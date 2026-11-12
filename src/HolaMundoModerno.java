@@ -1,3 +1,23 @@
+/**
+ * Ejemplo de «archivo fuente compacto» de Java moderno: no declara ninguna
+ * clase y {@code main} es un método sin {@code static} ni {@code String[] args}.
+ *
+ * <p>El programa:
+ * <ol>
+ * <li>Pide por consola la base y la altura de un triángulo.</li>
+ * <li>Convierte el texto a números con {@code Double.parseDouble}.</li>
+ * <li>Calcula el área con {@link #areaTriangulo(double, double)} dentro de un
+ * {@code try/catch}, que captura los datos inválidos.</li>
+ * <li>Comprueba un resultado conocido y un caso inválido que debe lanzar una
+ * excepción (una prueba manual sencilla).</li>
+ * <li>Muestra el resultado del operador resto {@code %} con decimales.</li>
+ * </ol>
+ *
+ * <p>Los bloques comentados son ejemplos alternativos que se pueden activar
+ * para practicar (leer el nombre, calcular la mayoría de edad...).
+ *
+ * @throws Exception si alguna llamada fuera de un {@code try} lanza una excepción
+ */
 // Archivo fuente compacto: no hace falta escribir la declaración de la clase.
 void main() throws Exception {	
 	

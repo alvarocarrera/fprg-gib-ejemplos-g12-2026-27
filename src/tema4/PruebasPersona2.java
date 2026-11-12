@@ -1,7 +1,17 @@
 package tema4;
 
+/**
+ * Segunda prueba de {@link Persona}: demuestra el paso por valor de los tipos
+ * primitivos y la comparación de dos personas con {@code equals}.
+ */
 public class PruebasPersona2 {
 
+	/**
+	 * Crea dos personas, cambia la edad de una con una variable local y comprueba
+	 * que la variable no cambia en {@code main}.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 
 		try {

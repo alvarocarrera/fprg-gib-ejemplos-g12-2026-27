@@ -1,7 +1,21 @@
 package tema3;
 
+/**
+ * Colección de ejemplos de bucles y de operadores de incremento y decremento.
+ *
+ * <p>Muestra {@code while}, {@code for}, la diferencia entre los operadores
+ * prefijo ({@code ++x}) y postfijo ({@code x++}), un {@code for} con dos
+ * variables y la salida anticipada con {@code break}.
+ */
 public class EjemplosBucles {
 
+	/**
+	 * Ejecuta uno tras otro los ejemplos de bucles; cada uno imprime sus
+	 * iteraciones por consola. Conviene predecir qué se imprimirá antes de ejecutarlo,
+	 * sobre todo en el ejemplo de {@code x}, {@code y} y {@code z}.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 
 		int contador = 0;

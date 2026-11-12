@@ -1,7 +1,20 @@
 package tema4;
 
+/**
+ * Ejemplo de un array grande de {@code double}: se rellena con números
+ * aleatorios y se suman sus elementos.
+ *
+ * <p>Compara el recorrido con {@code while} (índice manual) y con {@code for},
+ * y muestra el patrón de acumulador.
+ */
 public class EjemplosArrays {
 
+	/**
+	 * Crea el array, lo rellena con valores aleatorios entre 0 y 100, y muestra la
+	 * suma de todos ellos.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 
 		// Diez millones de double ocupan unos 80 MB (8 bytes cada uno).

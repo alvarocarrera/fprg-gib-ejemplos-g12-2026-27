@@ -1,7 +1,18 @@
 package tema4;
 
+/**
+ * Prueba principal de {@link Persona}: constructores, setters, referencias,
+ * {@code ==} frente a {@code equals}, {@code toString}, constante estática y
+ * captura de excepciones con varios {@code catch}.
+ */
 public class PruebasPersona {
 
+	/**
+	 * Crea varias personas, muestra que dos variables pueden referirse al mismo
+	 * objeto, compara objetos y captura los errores de validación.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 		IO.println("Comenzamos a crear personas:");
 

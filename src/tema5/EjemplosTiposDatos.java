@@ -1,7 +1,19 @@
 package tema5;
 
+/**
+ * Muestra los rangos de los tipos primitivos numéricos de Java.
+ *
+ * <p>Destaca que {@code MIN_VALUE} es el valor más negativo en los enteros pero
+ * el menor valor positivo en {@code float} y {@code double}.
+ */
 public class EjemplosTiposDatos {
 
+	/**
+	 * Imprime los valores mínimo y máximo de cada tipo y algunas comparaciones
+	 * con cero.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 
 		// Tipos enteros con signo, de menor a mayor tamaño: 8, 16, 32 y 64 bits.

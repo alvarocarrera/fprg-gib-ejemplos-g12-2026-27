@@ -2,8 +2,19 @@ package tema5;
 
 import java.util.Random;
 
+/**
+ * Ejemplo de arrays paralelos: un array de nombres y otro de alturas donde la
+ * misma posición describe a la misma persona. Los datos se generan con
+ * {@link java.util.Random} y una semilla fija.
+ */
 public class EjemplosArrays {
 
+	/**
+	 * Genera nombres y alturas aleatorias (reproducibles con la semilla) y las
+	 * muestra por pantalla.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 
 		// Cada array tiene un tamaño fijo, indicado al crearlo.

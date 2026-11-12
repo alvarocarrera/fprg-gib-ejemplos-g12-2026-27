@@ -2,8 +2,19 @@ package tema5;
 
 import java.util.Arrays;
 
+/**
+ * Más ejemplos de arrays: inicialización con llaves, cálculo de una media,
+ * diferencia entre compartir un array y clonarlo, {@code Arrays.toString} y
+ * matrices con filas de distinta longitud.
+ */
 public class MasEjemplosArrays {
 
+	/**
+	 * Calcula la media de unas notas, demuestra la copia con {@code clone} y
+	 * recorre una matriz irregular.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 		// Inicialización literal: entre llaves escribimos los valores separados
 		// por comas. Java crea un array de int con tantas posiciones como valores:

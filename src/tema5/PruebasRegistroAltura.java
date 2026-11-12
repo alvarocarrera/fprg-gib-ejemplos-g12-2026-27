@@ -1,7 +1,17 @@
 package tema5;
 
+/**
+ * Programa de prueba de {@link RegistroAltura}: genera datos, los lista, busca
+ * la altura máxima y provoca un acceso fuera de rango controlado.
+ */
 public class PruebasRegistroAltura {
 
+	/**
+	 * Crea un registro, lo rellena, muestra la altura máxima y pide el nombre de
+	 * una posición inexistente para ver cómo se captura la excepción.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 
 		// El constructor y getNombrePos pueden lanzar excepciones: las capturamos.

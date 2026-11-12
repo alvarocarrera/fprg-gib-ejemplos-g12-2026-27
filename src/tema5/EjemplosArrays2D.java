@@ -1,7 +1,18 @@
 package tema5;
 
+/**
+ * Ejemplo de arrays bidimensionales (matrices): creación, acceso por fila y
+ * columna, filas como referencias, filas de distinta longitud y los dos
+ * recorridos típicos ({@code for} con índices y {@code for-each}).
+ */
 public class EjemplosArrays2D {
 
+	/**
+	 * Crea una matriz de alturas, modifica sus filas y la recorre de dos formas,
+	 * imprimiendo los valores.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 		// Un array bidimensional es un array cuyas posiciones contienen arrays.
 		// Aquí creamos 9 filas, cada una con 5 int inicialmente a 0.

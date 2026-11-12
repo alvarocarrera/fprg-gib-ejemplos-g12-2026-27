@@ -1,7 +1,17 @@
 package tema6;
 
+/**
+ * Programa de prueba de {@link Notificable}: usa personas y agentes a través
+ * de la interfaz para ver polimorfismo, {@code instanceof} y casts.
+ */
 public class PruebasNotificable {
 
+	/**
+	 * Crea una persona y varios agentes, los notifica y los recorre guardados en
+	 * un array de {@code Notificable}, mostrando su tipo real.
+	 *
+	 * @param args argumentos de la línea de comandos (no se usan)
+	 */
 	public static void main(String[] args) {
 
 		try {

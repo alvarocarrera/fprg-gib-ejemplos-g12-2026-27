@@ -3,8 +3,14 @@ package tema4;
 public class Persona {
 
 	// static comparte la constante entre todas las personas; final impide reasignarla.
-	public static final int EDAD_MAXIMA = 200;
-	
+	// Es privada: se consulta desde fuera con el método estático getEdadMaxima().
+	private static final int EDAD_MAXIMA = 200;
+
+	// Un método static se invoca con el nombre de la clase: Persona.getEdadMaxima().
+	public static int getEdadMaxima() {
+		return EDAD_MAXIMA;
+	}
+
 	private String nombre;
 	private String email;
 	private int edad;
@@ -16,7 +22,7 @@ public class Persona {
 		this.setEmail(email);
 		this.setEdad(edad);
 	}
-	
+
 	public Persona(String nombre, int edad) throws Exception {
 		// this(...) llama al otro constructor; null representa la ausencia de correo.
 		this(nombre, null, edad);
@@ -25,7 +31,7 @@ public class Persona {
 	public Persona() throws Exception {
 		this("Nombre desconocido", null, 0);
 	}
-	
+
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -71,18 +77,18 @@ public class Persona {
 		if (edad < 0) {
 			throw new Exception("No admito edades negativas");
 		}
-		
+
 		if (edad > EDAD_MAXIMA) {
 			throw new Exception("No admito edades tan altas...");
 		}
-		
+
 		this.edad = edad;
 	}
 
 	// Java utiliza esta representación al imprimir la persona.
 	public String toString() {
-		String msg = "Persona[" 
-	+ "nombre = " + this.nombre 
+		String msg = "Persona["
+	+ "nombre = " + this.nombre
 	+ " - email = " + this.email
 	+ " - edad = " + this.edad + " ]";
 		return msg;
@@ -91,10 +97,10 @@ public class Persona {
 	// Sobrecarga equals con un parámetro Persona, pero no sobrescribe equals(Object).
 	// Comprueba p, pero no los atributos null antes de llamar a equals sobre ellos.
 	public boolean equals(Persona p) {
-		return (p != null 
-				&& this.nombre.equals(p.nombre) 
-				&& this.email.equals(p.email) 
+		return (p != null
+				&& this.nombre.equals(p.nombre)
+				&& this.email.equals(p.email)
 				&& this.edad == p.edad);
 	}
-	
+
 }

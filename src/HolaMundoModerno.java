@@ -42,6 +42,10 @@ void main() throws Exception {
 	
 	IO.println("El programa terminó sin problemas.");
 
+	// % es el resto de la división, también con decimales: 5 = 2 * 2.5 + 0.0.
+	double x = 5 % 2.5;
+	IO.println(x);
+
 //	int edad = Integer.parseInt(IO.readln("¿Qué edad tienes? "));
 //	boolean mayorDeEdad = edad >= 18;
 //	boolean menorDeEdad = !mayorDeEdad;

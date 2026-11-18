@@ -166,17 +166,19 @@ public class GestorBonusVentas extends Object {
 	 *
 	 * @param vendedor nombre del vendedor
 	 * @return ventas que tenía acumuladas
-	 * @throws NullPointerException si el vendedor no está registrado
+	 * @throws Exception si el vendedor no está registrado
 	 */
-	public double despide(String vendedor) {
+	public double despide(String vendedor) throws Exception {
+		if (!this.registroVentas.containsKey(vendedor)) {
+			throw new Exception(vendedor + " no está registrado. No se puede despedir.");
+		}
 		return this.registroVentas.remove(vendedor);
 	}
 	
 	/**
 	 * Reparte un bonus entre los vendedores proporcionalmente a sus ventas.
 	 * <p>
-	 * Si las ventas totales son 0, el resultado de cada vendedor es {@code NaN}
-	 * (división 0/0).
+	 * Si las ventas totales son 0, cada vendedor recibe 0.0 de bonus.
 	 * </p>
 	 *
 	 * @param bonus importe total a repartir
@@ -199,7 +201,7 @@ public class GestorBonusVentas extends Object {
 		for(Entry<String, Double> par : this.registroVentas.entrySet()) {
 			String nombre = par.getKey();
 			double ventaVendedor = par.getValue();
-			double pct = ventaVendedor / ventasTotales;
+			double pct = ventasTotales == 0 ? 0.0 : ventaVendedor / ventasTotales;
 			double bonusVendedor = pct * bonus;
 			resultado.put(nombre, bonusVendedor);
 		}

@@ -2,7 +2,6 @@ package tema6;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,11 +48,16 @@ public class GestorBonusVentas extends Object {
 	 * @throws FileNotFoundException si no se puede crear o abrir el historial
 	 */
 	public GestorBonusVentas() throws FileNotFoundException {
+		// Map: asocia cada clave (nombre) con un valor (ventas). No hay claves repetidas.
 		this.registroVentas = new HashMap<String, Double>();
 		File file = new File(FICHERO_HISTORIAL);
+		// Hay que mirar si existe ANTES de crear el PrintWriter, porque
+		// new PrintWriter(file) crea el fichero (o lo vacía si ya existía).
 		if (!file.exists()) {
 			this.historial = new PrintWriter(file);
+			// La cabecera solo se escribe al crear el fichero.
 			historial.println("Tipo operación,Vendedor,Venta,TimeStamp");
+			// flush() fuerza a escribir ya en disco lo que está en el búfer.
 			historial.flush();
 		} else {
 			this.historial = new PrintWriter(file);
@@ -72,23 +76,31 @@ public class GestorBonusVentas extends Object {
 	 *                   alguna fila no tiene 2 columnas o las ventas no son numéricas
 	 */
 	public GestorBonusVentas(String estadoPrevio) throws Exception {
+		// this() llama al constructor sin parámetros: deja listos el mapa y el historial.
 		this();
+		// Scanner sobre un File lee el fichero línea a línea.
 		Scanner sc = new Scanner(new File(estadoPrevio));
+		// La primera línea es la cabecera: se lee aparte para validar el formato.
 		if (sc.hasNextLine()) {
 			String cabeceras = sc.nextLine();
+			// Para comparar textos se usa equals(), nunca ==.
 			if (!cabeceras.equals("Vendedor,Ventas")) {
+				// Se cierra el Scanner antes de lanzar la excepción para no dejar el fichero abierto.
 				sc.close();
 				throw new Exception("Cabecera mal formada. Fichero no compatible");
 			}
 		}
+		// Resto de líneas: una por vendedor, con formato "nombre,ventas".
 		while(sc.hasNextLine()) {
 			String fila = sc.nextLine();
+			// split(",") separa la fila en un array: partes[0] = nombre, partes[1] = ventas.
 			String[] partes = fila.split(",");
 			if(partes.length != 2) {
 				sc.close();
 				throw new Exception("La fila debería tener solo 2 partes. Fila mal formada: " + fila);
 			}
 			String nombre = partes[0];
+			// parseDouble convierte el texto en número; lanza NumberFormatException si no lo es.
 			double ventas = Double.parseDouble(partes[1]);
 			this.registroVentas.put(nombre, ventas);
 		}
@@ -106,9 +118,13 @@ public class GestorBonusVentas extends Object {
 	 * @param cuantia  importe de la operación (0 en los registros)
 	 */
 	private void registraHistorial(TipoOperaciones tipo, String vendedor, double cuantia) {
+		// Milisegundos desde el 1-1-1970: sirve para ordenar las operaciones en el tiempo.
 		long timestamp = System.currentTimeMillis();
+		// name() devuelve el nombre de la constante del enum ("REGISTRO" o "VENTA").
+		// La línea sigue el formato CSV: campos separados por comas.
 		String msg = tipo.name()+","+vendedor+","+cuantia+","+timestamp;
 		historial.println(msg);
+		// Sin flush() la línea podría quedarse en el búfer y perderse si el programa termina antes.
 		historial.flush();
 	}
 	
@@ -119,7 +135,9 @@ public class GestorBonusVentas extends Object {
 	 * @throws Exception si ya existe un vendedor con ese nombre
 	 */
 	public void registraNuevoVendedor(String nombre) throws Exception {
+		// containsKey() comprueba si la clave ya está en el mapa; evita pisar a un vendedor existente.
 		if (this.registroVentas.containsKey(nombre)) {
+			// get() devuelve un Double; se convierte solo a double (auto-unboxing).
 			double ventasRegistradas = this.registroVentas.get(nombre);
 			String msg = "Vendedor: " + nombre + " ya existía previamente";
 			msg += " y además tiene " + ventasRegistradas + " € en ventas."; 
@@ -143,6 +161,7 @@ public class GestorBonusVentas extends Object {
 		
 		double ventasPrevias = this.registroVentas.get(vendedor);
 		double ventasNuevas = ventasPrevias + montante;
+		// put() con una clave existente reemplaza el valor anterior: así se actualiza el acumulado.
 		this.registroVentas.put(vendedor, ventasNuevas);
 		this.registraHistorial(TipoOperaciones.VENTA, vendedor, montante);
 	}
@@ -172,6 +191,7 @@ public class GestorBonusVentas extends Object {
 		if (!this.registroVentas.containsKey(vendedor)) {
 			throw new Exception(vendedor + " no está registrado. No se puede despedir.");
 		}
+		// remove() borra la entrada del mapa y devuelve el valor que tenía.
 		return this.registroVentas.remove(vendedor);
 	}
 	
@@ -185,22 +205,28 @@ public class GestorBonusVentas extends Object {
 	 * @return bonus asignado a cada vendedor, por nombre
 	 */
 	public Map<String, Double> reparteBonus(double bonus) {
-		// ¿Porcentaje de cada uno?
+		// Idea: cada vendedor recibe un porcentaje del bonus igual a su porcentaje de las ventas totales.
 		Map<String, Double> resultado = new HashMap<String, Double>();
+		// Paso 1: sumar las ventas de todos. values() recorre solo los valores del mapa.
 		double ventasTotales = 0.0;
 		for(double ventasVendedor : this.registroVentas.values()) {
 			ventasTotales += ventasVendedor;
 //			ventasTotales = ventasTotales + ventasVendedor;
 		}
+		// Paso 2: calcular el bonus de cada vendedor.
+		// Versión alternativa recorriendo las claves (hace un get() por cada una):
 //		for(String nombre : this.registroVentas.keySet()) {
 //			double ventaVendedor = this.registroVentas.get(nombre);
 //			double pct = ventaVendedor / ventasTotales;
 //			double bonusVendedor = pct * bonus;
 //			resultado.put(nombre, bonusVendedor);
 //		}
+		// Versión usada: entrySet() da cada par clave-valor (Entry), sin buscar de nuevo en el mapa.
 		for(Entry<String, Double> par : this.registroVentas.entrySet()) {
 			String nombre = par.getKey();
 			double ventaVendedor = par.getValue();
+			// Operador ternario: condición ? valor_si_true : valor_si_false.
+			// Evita dividir 0/0, que daría NaN (Not a Number).
 			double pct = ventasTotales == 0 ? 0.0 : ventaVendedor / ventasTotales;
 			double bonusVendedor = pct * bonus;
 			resultado.put(nombre, bonusVendedor);
@@ -220,18 +246,23 @@ public class GestorBonusVentas extends Object {
 	 * @throws Exception si el fichero resultante ya existe o no se puede escribir
 	 */
 	public void guardaBackup(String ficheroDestino) throws Exception {
+		// Se añade la hora al nombre para que cada backup tenga un nombre distinto.
 		ficheroDestino += "-"+System.currentTimeMillis() + ".bak";
 		File fichero = new File(ficheroDestino);
+		// Si ya existe, new PrintWriter lo sobrescribiría: mejor avisar con una excepción.
 		if(fichero.exists()) {
 			throw new Exception("El fichero ya existe: " + ficheroDestino + " Elige otro nombre.");
 		}
 		PrintWriter pw = new PrintWriter(fichero);
+		// Misma cabecera que espera el constructor con fichero: así el backup se puede volver a cargar.
 		String cabeceras = "Vendedor,Ventas";
 		pw.println(cabeceras);
+		// Una línea "nombre,ventas" por cada vendedor.
 		for(Entry<String,Double> entry : this.registroVentas.entrySet()) {
 			String linea = entry.getKey()+","+entry.getValue();
 			pw.println(linea);
 		}
+		// close() vacía el búfer y libera el fichero; sin él podrían faltar datos.
 		pw.close();
 	}
 	

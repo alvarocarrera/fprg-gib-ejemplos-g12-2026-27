@@ -4,3 +4,7 @@
 
 # Javadoc generado; se conserva la documentación en el código fuente.
 /doc/
+
+# Ficheros generados al ejecutar GestorBonusVentas.
+*.bak
+historial.csv
